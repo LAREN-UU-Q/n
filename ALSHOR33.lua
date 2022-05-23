@@ -8391,63 +8391,30 @@ local reply_markup = LuaTele.replyMarkup{type = 'inline',data = {{{text = NcH, u
 return LuaTele.sendText(msg.chat_id,msg.id,NcHlink,"md",false, false, false, false, reply_markup) end
 Redis:del(ALSHOR33..'ALSHOR33:Texting:DevALSHOR33')
 return LuaTele.sendText(msg_chat_id,msg_id,'⌔︰تم حذف كليشة المطور') end
-if text == 'المطور' or text == 'مطور البوت' then   
+if text == 'المطور' or text == 'مطور' then   
 local UserInfo = LuaTele.getUser(Sudo_Id) 
 local InfoUser = LuaTele.getUserFullInfo(Sudo_Id)
-local DevText = Redis:get(ALSHOR33..'ALSHOR33:Texting:DevALSHOR33')
-local Get_Chat = LuaTele.getChat(msg_chat_id)
-local Info_Chats = LuaTele.getSupergroupFullInfo(msg_chat_id)
-if not msg.ControllerBot then
-local UserInfo = LuaTele.getUser(msg.sender.user_id)
-for Name_User in string.gmatch(UserInfo.first_name, "[^%s]+" ) do
-UserInfo.first_name = Name_User
-break
-end
-if UserInfo.username then
-KADI = '['..UserInfo.first_name..'](t.me/'..UserInfo.username..')'
-else
-KADI = '['..UserInfo.first_name..'](tg://user?id='..msg.sender.user_id..')'
-end
-LuaTele.sendText(Sudo_Id,0,"⌔︰هناك من بحاجه الى مساعده ↫ ⤈\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌔︰الشخص ↫ "..KADI.."\n⌔︰اسم المجموعه ↫ "..Get_Chat.title.."\n⌔︰ايدي المجموعه ↫ ⤈\n❨ `"..msg_chat_id.."` ❩\n⌔︰رابط المجموعه ↫ ⤈\n❨ "..Info_Chats.invite_link.invite_link.." ❩\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌔︰الوقت ↫ "..os.date("%I:%M%p").."\n⌔︰التاريخ ↫ "..os.date("%Y/%m/%d").."","md",true) end
 if InfoUser.bio then
 Bio = InfoUser.bio
 else
 Bio = ''
 end
 local photo = LuaTele.getUserProfilePhotos(Sudo_Id)
-local DevMarkdown = "["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")"
-if DevText then
-if UserSudo then
-DevUsre = '@'..UserSudo
-else
-DevUsre = 'لا يوجد'
-end
-DevText = DevText:gsub('NameGr',Get_Chat.title) 
-DevText = DevText:gsub('DevName',DevMarkdown) 
-DevText = DevText:gsub('DevUsre',DevUsre) 
-DevText = DevText:gsub('DeviD',Sudo_Id) 
-DevText = DevText:gsub('DevBio',Bio) 
 if photo.total_count > 0 then
+local TestText = "  ❲ Developers Source ❳\n— — — — — — — — —\n •︙*Dev Name* :  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n•︙*Dev User*: [❲ @"..UserSudo.." ❳]\n•︙*Dev Bio* : [❲ "..Bio.." ❳]"
 keyboardd = {} 
-keyboardd.inline_keyboard = {{{text = UserInfo.first_name, url = "https://t.me/"..UserSudo..""}},
-}
-local msg_id = msg.id/2097152/0.5 
-return https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id='..msg.chat_id..'&caption='..URL.escape(DevText)..'&photo='..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
-else
-local msg_id = msg.id/2097152/0.5 
-return https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(DevText).."&reply_to_message_id="..msg_id.."&parse_mode=markdown") end
-else
-if photo.total_count > 0 then
-local TestText = "⌔︰*Dev Name* ↬  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n⌔︰*Dev User* ↬ @"..UserSudo.."\n⌔︰*Dev iD* ↬ "..Sudo_Id..""
-keyboardd = {} 
-keyboardd.inline_keyboard = {{{text = UserInfo.first_name, url = "https://t.me/"..UserSudo..""}},
+keyboardd.inline_keyboard = {
+{
+{text = "❲"..msg.Name_Controller.."❳", url = "https://t.me/"..UserSudo..""}
+},
 }
 local msg_id = msg.id/2097152/0.5 
 return https.request("https://api.telegram.org/bot"..Token..'/sendPhoto?chat_id='..msg.chat_id..'&caption='..URL.escape(TestText)..'&photo='..photo.photos[1].sizes[#photo.photos[1].sizes].photo.remote.id..'&reply_to_message_id='..msg_id..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboardd))
 else
-local TestText = "❲ Developer Bot ❳\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n⌔︰*Dev Name* :  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n⌔︰*Dev User* : @"..UserSudo.."\n⌔︰*Dev iD* : "..Sudo_Id.."\n⌔︰*Dev Bio* : [❲ "..Bio.." ❳]"
+local TestText = "  ❲ Developers Source ❳\n— — — — — — — — —\n •︙*Dev Name* :  ["..UserInfo.first_name.."](tg://user?id="..Sudo_Id..")\n•︙*Dev User*: [❲ @"..UserSudo.." ❳]\n•︙*Dev Bio* : [❲ "..Bio.." ❳]"
 local msg_id = msg.id/2097152/0.5 
-return https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(TestText).."&reply_to_message_id="..msg_id.."&parse_mode=markdown") end end
+return https.request("https://api.telegram.org/bot"..Token..'/sendMessage?chat_id=' .. msg.chat_id .. '&text=' .. URL.escape(TestText).."&reply_to_message_id="..msg_id.."&parse_mode=markdown")
+end
 end
 if text == "جمالي" or text == 'نسبه جمالي' or text == 'نسبة جمالي' then
 if Redis:get(ALSHOR33.."ALSHOR33:Status:gamle"..msg.chat_id) then
